@@ -34,6 +34,19 @@ public class EmployeeService {
 		
 		return opt.orElseThrow(()->new NoSuchElementException("Employee with this id not found"));
 	}
+
+	public EmployeeEntity updateById(int id, EmployeeEntity newEmployee) {
+		//test Id exists
+		EmployeeEntity employee = getById(id);
+		if(newEmployee.getName()!=null)
+			employee.setName(newEmployee.getName());
+		if(newEmployee.getDob()!=null)
+			employee.setDob(newEmployee.getDob());
+		if(newEmployee.getEmail()!=null)
+			employee.setEmail(newEmployee.getEmail());
+
+		return empRepos.save(employee);
+	}
 	
 
 }

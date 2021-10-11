@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,11 @@ public class EmployeeCtrl {
 	@GetMapping("/employee/get/{id}")
 	public EmployeeEntity getEmployeeById(@PathVariable int id) {
 		return empService.getById(id);
+	}
+	
+	@PutMapping("/employee/update/{id}")
+	public EmployeeEntity updateEmployeeById(@PathVariable int id,@RequestBody EmployeeEntity newEmployee) {
+		return empService.updateById(id, newEmployee);
 	}
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
