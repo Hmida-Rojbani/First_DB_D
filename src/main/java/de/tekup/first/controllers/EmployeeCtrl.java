@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,10 @@ public class EmployeeCtrl {
 		return empService.updateById(id, newEmployee);
 	}
 	
+	@DeleteMapping("/employee/delete/{id}")
+	public EmployeeEntity deleteEmployeeById(@PathVariable int id) {
+		return empService.deleteEmpById(id);
+	}
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException e){
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)

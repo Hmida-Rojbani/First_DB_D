@@ -47,6 +47,12 @@ public class EmployeeService {
 
 		return empRepos.save(employee);
 	}
+
+	public EmployeeEntity deleteEmpById(int id) {
+		EmployeeEntity employee = getById(id);
+		empRepos.deleteById(id);
+		return employee;
+	}
 	
 
 }
